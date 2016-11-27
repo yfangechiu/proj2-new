@@ -1,0 +1,19 @@
+<h1>Your request has been made!</h1>
+
+Once the owner approves of your request, you can play with <%=@pet.name %> at <%= @pet.address%>.
+
+<br></br>
+He will be there for <%=@pet.duration%> hours starting [START DATE]!
+<br></br>
+You can check the status of your request for this pet by viewing your profile.
+<br></br>
+
+<h3>YAY PETS <3 </h3>
+
+		<%= button_to "Delete Request", delete_request_path(pet_id: @pet.id, user_id: @user_id), :class => "button medium", :method => :post %> 
+<br></br>
+
+		<%= button_to "Return to Home Page", root_path, :class => "button medium", :method => :get %> 
+<br></br>
+
+		<%= button_to "My Profile", curr_user_path(user_id: =>@user_id), :class => "button medium", :method => :get %> 

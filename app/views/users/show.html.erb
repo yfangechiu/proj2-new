@@ -1,0 +1,120 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<h3><%=@user.name%>'s Profile</h3>
+
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+<h3>Requests:</h3>
+<table>
+
+  <tr>
+  	<th>
+		Pet Name
+	</th>
+	<th>
+		Address
+	</th> 
+	<th>
+		Start Time and Duration
+	</th>
+
+
+  </tr>
+
+<%@user.requests.each do |request| %>
+  <tr>
+  	<th>
+		<%=request.pet.name%>
+	</th>
+  	<th>
+		<%=request.pet.address%>
+	</th>  	
+  
+  <th>
+    ADD START TIME, available for <%=request.pet.duration%> hours
+  </th>
+
+  </tr>
+<% end %>
+
+</table>
+
+<br></br>
+<h3>My Pets:</h3>
+<table>
+
+  <tr>
+  	<th>
+		Pet Name 
+	</th>
+	<th>
+		Type
+	</th> 
+	<th>
+		Address
+	</th>
+
+	<th>
+		Start Time/Duration
+	</th>
+	
+	<th>
+		Delete Pet Post
+	</th>
+
+
+  </tr>
+
+<%@user.pets.each do |p| %>
+  <tr>
+  	<th>
+  		<%=p.name%>
+  	</th>
+  	
+  	<th>
+  		<%= p.animal_type%>
+  	</th>
+
+  	<th>
+  		<%=p.address%>
+  	</th>
+
+  	<th>
+  		ADD START TIME, available for <%=p.duration%> hours
+  	</th>
+
+  	<th>
+  		<%= button_to "Delete Post", delete_pet_path(pet_id: p.id, user_id: @user.id), :class => "button medium", :method => :post %> 
+  	</th>
+
+
+  </tr>
+<% end %>
+
+</table>
+
+
+<p><%= link_to 'Add a pet:', new_pet_path(:curr_user=>@user.id) %> </p>
+</body>
+</html>

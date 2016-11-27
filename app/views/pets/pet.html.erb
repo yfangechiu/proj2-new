@@ -1,0 +1,16 @@
+<% if pet.user_id.to_i != @user_id.to_i %>
+	<th> 
+		<%= pet.name %> 
+	</th>
+	<th>
+		<%= pet.animal_type %>
+	</th> 
+	<th>
+		<%= pet.characteristic %>
+	</th>
+
+	<th>
+		<%= button_to "REQUEST THIS PET", new_request_path(pet_id: pet.id, user_id: @user_id), :class => "button medium", :method => :patch %> 
+	</th>
+<%end%>
+

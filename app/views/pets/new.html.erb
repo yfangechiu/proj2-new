@@ -1,0 +1,10 @@
+Add a Pet for others to Play with!
+<%= simple_form_for @pet, url: {action: "create"} do |f| %>
+  <%= f.input :name %>
+  <%= f.input :characteristic %>
+  <%= f.input :animal_type %>
+  <%= f.input :duration %>
+  <%= f.input :address %>
+<%= hidden_field_tag(:curr_user, @user_id) %>
+  <%= f.button :submit %>
+<% end %>

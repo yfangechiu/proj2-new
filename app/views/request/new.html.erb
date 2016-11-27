@@ -1,0 +1,8 @@
+
+Send a message to the pet owner with your request:
+<%= simple_form_for @request, url: {action: "create"} do |f| %>
+  <%= f.input :request_message %>
+<%= hidden_field_tag(:curr_user, @user_id) %>
+<%= hidden_field_tag(:pet_id, @pet.id) %>
+  <%= f.button :submit %>
+<% end %>
