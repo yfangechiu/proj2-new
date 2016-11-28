@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   post '/createRequest', to: 'request#create', as: 'create_request'
   post '/deletePet', to: 'pets#delete', as: 'delete_pet'
   post '/acceptRequest', to: 'request#accept', as: 'accept_request'
-    post '/declineRequest', to: 'request#decline', as: 'decline_request'
+  post '/declineRequest', to: 'request#decline', as: 'decline_request'
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
