@@ -121,10 +121,7 @@ tr:nth-child(even) {
   	</th>
 
     <th>
-      <% if p.requests == nil%> 
-        <b>No requests at this time</b>
-
-      <%else%>
+      <% if p.requests != nil%> 
         <%p.requests.each do |request|%>
               Request from <%=request.user.email%>
               <%= button_to "Accept", accept_request_path(request_id: request.id), :class => "button medium", :method => :post %> 
