@@ -11,8 +11,16 @@ class PetsController < ApplicationController
 
   def show
     #shows all pets in search view that are not owned by this user
-    @user_id = params[:curr_user]
+    
+    #@user_id = params[:curr_user]
+    if current_user
+      @user_id = current_user.id
+    else
+      @user_id = 0
+    end
+
     @pets = Pet.all
+
   end
 
   def create
