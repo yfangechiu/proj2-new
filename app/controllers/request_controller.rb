@@ -23,10 +23,18 @@ class RequestController < ApplicationController
 
   end
 
-
-  def show
-
+  def accept
+    @request = Request.where(id: params[:request_id]).first
+    @request.update(status: true)
+    redirect_to curr_user_path
   end
+
+  def decline
+    @request = Request.where(id: params[:request_id]).first
+    @request.update(status: false)
+    redirect_to curr_user_path
+  end
+
 
   def delete
     p = Request.where(:pet_id=>params[:pet_id]).first

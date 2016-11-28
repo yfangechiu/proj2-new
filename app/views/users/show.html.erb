@@ -4,7 +4,7 @@
 <html>
 <head>
 
-<h3><%=@user.name%>'s Profile</h3>
+<h3>Your Profile</h3>
 
 <style>
 table {
@@ -25,7 +25,7 @@ tr:nth-child(even) {
 </style>
 </head>
 <body>
-<h3>Requests:</h3>
+<h3>My Requests:</h3>
 <table>
 
   <tr>
@@ -38,6 +38,10 @@ tr:nth-child(even) {
 	<th>
 		Start Time and Duration
 	</th>
+
+  <th>
+    Status
+  </th>
 
 
   </tr>
@@ -52,7 +56,15 @@ tr:nth-child(even) {
 	</th>  	
   
   <th>
-    ADD START TIME, available for <%=request.pet.duration%> hours
+    <%=request.pet.start_time%>, available for <%=request.pet.duration%> hours
+  </th>
+
+  <th>
+    <% if request.status%>
+      approved!
+    <%else%>
+      pending approval
+    <%end%>
   </th>
 
   </tr>
@@ -78,6 +90,10 @@ tr:nth-child(even) {
 	<th>
 		Start Time/Duration
 	</th>
+
+  <th>
+    Requests
+  </th>
 	
 	<th>
 		Delete Pet Post
@@ -101,8 +117,26 @@ tr:nth-child(even) {
   	</th>
 
   	<th>
-  		ADD START TIME, available for <%=p.duration%> hours
+  		<%=p.start_time%>, available for <%=p.duration%> hours
   	</th>
+
+    <th>
+      <% if p.requests == nil%> 
+        <b>No requests at this time</b>
+
+      <%else%>
+        <%p.requests.each do |request|%>
+              Request from <%=request.user.email%>
+              <%= button_to "Accept", accept_request_path(request_id: request.id), :class => "button medium", :method => :post %> 
+              <%= button_to "Decline", decline_request_path(request_id: request.id), :class => "button medium", :method => :post %> 
+              <br></br>
+
+        <%end%>
+      
+      <% end %>
+
+
+    </th>
 
   	<th>
   		<%= button_to "Delete Post", delete_pet_path(pet_id: p.id, user_id: @user.id), :class => "button medium", :method => :post %> 
@@ -115,6 +149,6 @@ tr:nth-child(even) {
 </table>
 
 
-<p><%= link_to 'Add a pet:', new_pet_path(:curr_user=>@user.id) %> </p>
+<p><%= link_to 'Add a pet', new_pet_path(:curr_user=>@user.id) %> </p>
 </body>
 </html>
