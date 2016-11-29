@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Business Frontpage - Start Bootstrap Template</title>
+    <title>PetHugs (Home)</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -39,23 +39,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Welcome to PetHugs!</a>
+                <a class="navbar-brand" href="#">PetHugs</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <%= link_to 'Profile', curr_user_path() %>
+                        <%= link_to 'Your Profile', curr_user_path() %>
                     </li>
                     <li>
                         <%= link_to 'Search for Pets', search_pets_path() %>
                     </li>
                     <li>
                         <% if user_signed_in? %>
-  <%= button_to('Logout', destroy_user_session_path, :class => "btn btn-link", :method => :delete) %>        
-<% else %>
-  <%= button_to('Login', new_user_session_path)  %>  
-<% end %>
+  							<%= link_to('Logout', destroy_user_session_path, :class => "btn btn-link", :method => :delete) %>        
+						<% else %>
+  							<%= link_to('Login', new_user_session_path, :class => "btn btn-link")  %>  
+						<% end %>
                     </li>
                 </ul>
             </div>

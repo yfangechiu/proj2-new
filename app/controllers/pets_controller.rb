@@ -6,9 +6,6 @@ class PetsController < ApplicationController
   end
 
   def show
-    #shows all pets in search view that are not owned by this user
-    
-    #@user_id = params[:curr_user]
     if current_user
       @user_id = current_user.id
     else
@@ -24,11 +21,6 @@ class PetsController < ApplicationController
       start_date = Date.new(params[:pet]["start_date(1i)"].to_i, params[:pet]["start_date(2i)"].to_i, params[:pet]["start_date(3i)"].to_i)
       @pets = Pet.where(start_date: start_date)
     end
-    # if params[:pet] != nil && params[:pet]["start_time(4i)"] != nil
-    #   start_time = Time.new(params[:pet]["start_time(1i)"].to_i, params[:pet]["start_time(2i)"].to_i, params[:pet]["start_time(3i)"].to_i, params[:pet]["start_time(4i)"].to_i, params[:pet]["start_time(5i)"].to_i)
-    #   start_time = start_time.strftime("%I:%M%p")
-    #   @pets = @pets.where(start_time: start_time)
-    # end
   end
 
   def create
@@ -46,7 +38,9 @@ class PetsController < ApplicationController
     #@pet.update(:user_id => params[:curr_user])
       redirect_to curr_user_path(:curr_user=>params[:curr_user])
     else
-      redirect_to root_path 
+      #flash[:error] = @pet.errors.full_messages.to_sentence
+      #redirect_to new_pet_path 
+      redirect_to root_path
     end
   end
 
@@ -54,16 +48,12 @@ class PetsController < ApplicationController
     #delete pet with the params id
     @pets = Pet.where(:id=>params[:pet_id]).first
     @pets.delete
+    
+    #delete all requests associated with that pet
+    @pets.requests.each do |request|
+      request.delete
+    end
+
     redirect_to curr_user_path(curr_user: params[:user_id])
   end
-
-
-  # def filter
-  #   #shows all pets in search view that are not owned by this user
-  #   if params[:animal_type]
-  #     @pets = Pet.where(:animal_type=>params[:animal_type])
-  #   else
-  #     @pets = Pet.where(:animal_type=>"Dog")
-  #   end
-  # end
 end
