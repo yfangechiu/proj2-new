@@ -38,9 +38,11 @@ class PetsController < ApplicationController
     #@pet.update(:user_id => params[:curr_user])
       redirect_to curr_user_path(:curr_user=>params[:curr_user])
     else
-      #flash[:error] = @pet.errors.full_messages.to_sentence
-      #redirect_to new_pet_path 
-      redirect_to root_path
+      flash[:error] = @pet.errors.first[1]
+      #@message.errors[:name].join(", ")
+      #flash.now[:error]
+      #flash.now[:error] = @message.errors[:name].first 
+      redirect_to new_pet_path(:curr_user=>current_user.id)
     end
   end
 
