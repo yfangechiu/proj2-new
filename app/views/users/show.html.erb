@@ -48,7 +48,7 @@
                         <%= link_to 'Your Profile', curr_user_path() %>
                     </li>
                     <li>
-                        <%= link_to 'Search for Pets', search_pets_path() %>
+                        <%= link_to 'Find a pet!', search_pets_path() %>
                     </li>
                     <li>
                         <% if user_signed_in? %>
@@ -93,7 +93,7 @@
           <%@user.requests.each do |request| %>
               <div class="col-md-3 col-sm-6 hero-feature">
                   <div class="thumbnail">
-                      <img src="http://placehold.it/800x500" alt="">
+                      <%= image_tag request.pet.image_url, height: '500', width: '800'%>
                       <div class="caption">
                           <h3><%=request.pet.name%></h3>
                           <p> <b>Location:</b> <%=request.pet.address%></p>
@@ -129,7 +129,7 @@
             <%@user.pets.each do |p| %>
               <div class="col-md-3 col-sm-6 hero-feature">
                   <div class="thumbnail">
-                      <img src="http://placehold.it/800x500" alt="">
+                      <%= image_tag p.image_url, height: '500', width: '800'%>
                       <div class="caption">
                           <h3><%=p.name%></h3>
                           <p> <!-- <%=p.animal_type%><br> --> </p>
@@ -162,7 +162,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; PetHugs 2016</p>
                 </div>
             </div>
         </footer>

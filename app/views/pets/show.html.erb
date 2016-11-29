@@ -50,7 +50,7 @@
                         <%= link_to 'Your Profile', curr_user_path() %>
                     </li>
                     <li>
-                        <%= link_to 'Search for Pets', search_pets_path() %>
+                        <%= link_to 'Find a pet!', search_pets_path() %>
                     </li>
                     <li>
             <% if user_signed_in? %>
@@ -72,7 +72,7 @@
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
             <h1>Find a hug!</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
+            <p>Find and request any type of pet from all over Berkeley.</p>
         </header>
 
         <hr>
@@ -104,29 +104,16 @@
             <%@pets.each do |p| %>
               <div class="col-md-3 col-sm-6 hero-feature">
                   <div class="thumbnail">
-                      <img src="http://placehold.it/800x500" alt="">
+                      <%= image_tag p.image_url, height: '500', width: '800'%>
                       <div class="caption">
                           <h3><%=p.name%></h3>
                           <p> <%=p.animal_type%><br> </p>
                           <p> <b>Characteristic: </b><%=p.characteristic%><br> </p>
                           <p> <b>Location:</b> <%=p.address%></p>
                           <p> <b>Start date:</b> <%=p.start_date%></p>
-                          <!-- <p> START TIME!!!!!!! </p> -->
+                          <p> <b>Start time:</b> <%=p.start_time%></p>
                           <p> <b>Availability:</b> <%=p.duration%> hours</p>
                               <%= button_to "Request this pet!", new_request_path(pet_id: p.id, user_id: @user_id), :class => "btn btn-primary", :method => :patch %> 
-                              <!--<%= link_to "Open modal", "#my-modal", :class => "btn", "data-toggle" => "modal" %>
-<div class="modal hide fade" id="my-modal" title="My modal">
-  <div class="modal-header">
-    <button aria-hidden="true" class="close" data-dismiss="modal" type="button">×</button>
-    <h3 id="myModalLabel">Modal header</h3>
-  </div>
-  <div class="modal-body">
-    Modal Body
-  </div>
-  <div class="modal-footer">
-    <button aria-hidden="true" class="btn" data-dismiss="modal">Close</button>
-  </div>
-</div> -->
                           </p>
                       </div>
                   </div>
@@ -144,7 +131,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; PetHugs 2016</p>
                 </div>
             </div>
         </footer>

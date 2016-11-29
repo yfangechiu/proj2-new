@@ -24,9 +24,10 @@ class PetsController < ApplicationController
   end
 
   def create
-    @pet = Pet.create(:name => params[:pet][:name],
+    @pet = Pet.create(:name => params[:pet][:name],  
       :characteristic=>params[:pet][:characteristic], 
       :animal_type=> params[:pet][:animal_type], 
+      :image_url => params[:pet][:image_url],
       :address => params[:pet][:address],
       :start_time=> params[:pet][:start_time],
       :start_date=> params[:pet][:start_date],

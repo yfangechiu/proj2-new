@@ -54,7 +54,7 @@ Division of Labor:
 
 ● Natasha: Made users
 
-● Takara: In charge of the design and HTML/CSS
+● Takara: Integrated ruby views with bootstrap
 
 ● Jake: Made views and controllers
 
