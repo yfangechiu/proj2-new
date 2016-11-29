@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/users', to: 'users#show', as: 'curr_user'
   get '/newPet', to: 'pets#new', as: 'new_pet'
   post '/createPet', to: 'pets#create', as: 'create_pet'
+  get '/createFailed', to: 'request#create_failed', as: 'create_failed'
   get '/searchPets', to: 'pets#show', as: 'search_pets'
   patch '/request', to: 'request#new', as: 'new_request'
   post '/request', to: 'request#delete', as: 'delete_request'
