@@ -133,9 +133,10 @@
                           <h3><%=p.name%></h3>
                           <p> <!-- <%=p.animal_type%><br> --> </p>
                           <p> <b>Location:</b> <%=p.address%></p>
-                          <p> <b>Start time:</b> <%=p.start_time%> </p>
+                          <p> <b>Start date:</b> <%=p.start_date%></p>
+                          <p> <b>Start time:</b> <%=p.start_time.strftime("%H:%M")%> </p>
                           <p> <b>Availability:</b> <%=p.duration%> hours</p>
-                          <p>
+                          <p> <%= button_to "Delete Pet", delete_pet_path(pet_id: p.id, user_id: @user.id), :class => "btn btn-danger", :method => :post %> </p>
                           <p>    
                             <% if p.requests == -1%> 
                               <%p.requests.each do |request|%>
