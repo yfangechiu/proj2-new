@@ -81,14 +81,15 @@
                     <h4>
           <%= simple_form_for @pet, url: {action: "show"} do |f| %>
   <%= f.label :animal_type, "Type of animal" %> 
-  <%= f.select :animal_type, ['Dog', 'Cat', 'Hamster', 'Rabbit', 'Gerbil', 'Raccoon', 'Llamas', 'Other']%>   
+  <%= f.select :animal_type, ['Cat', 'Dog', 'Hamster', 'Rabbit', 'Gerbil', 'Raccoon', 'Llamas', 'Other'], :include_blank => true%>   
   <%= f.label :start_date, "Starting date" %> 
-  <%= f.select :start_time, ['11/26', '11/27', '11/28', '11/29', '11/30', '12/01', '12/02', '12/03']%>  
+  <%= f.select :start_time, ['11/26', '11/27', '11/28', '11/29', '11/30', '12/01', '12/02', '12/03'], :include_blank => true %>  
   <%= f.label :start_time, "Starting time" %> 
-  <%= f.select :start_time, ['1:00PM', '2:00PM', '3:00PM', '4:00PM', '5:00PM', '6:00PM', '7:00PM', '8:00PM']%>     
+  <%= f.select :start_time, ['1:00PM', '2:00PM', '3:00PM', '4:00PM', '5:00PM', '6:00PM', '7:00PM', '8:00PM'], :include_blank => true%>     
   <%= f.button :submit, "Filter" %>
 <% end %>
 
+<<<<<<< HEAD
             </h4>
             <br>
             </div>
@@ -121,6 +122,59 @@
         </div>
         <!-- /.row -->
 
+=======
+
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<table>
+
+  <tr>
+    <th>
+    Pet Name 
+  </th>
+  <th>
+    Type
+  </th> 
+  <th>
+    Description
+  </th>
+  
+  <th>
+    Request a Pet
+  </th>
+
+
+  </tr>
+
+<% if @pets != nil %> 
+  <%@pets.each do |pet| %>
+    <tr>
+      <%= render pet %>
+    </tr>
+  <% end %>
+<% end %>
+
+<% if @pets == nil %> 
+<% end %>
+>>>>>>> 6ad643b8d050d6a77a53ba2018df9d0ea8518ecb
 
         <hr>
 

@@ -24,7 +24,7 @@ class RequestController < ApplicationController
   def create
     @pet = Pet.where(id: params[:pet_id]).first
     @user_id = params[:curr_user]
-    @request = Request.create(:pet_id => params[:pet_id], :user_id => params[:curr_user], :status=>false, :request_message=> params[:request][:request_message] )
+    @request = Request.create(:pet_id => params[:pet_id], :user_id => params[:curr_user], :status=>-1, :request_message=> params[:request][:request_message] )
 
     if !@request.save
       redirect_to root_path #ns change this to SHOW ERROR MESSAGE instead
@@ -35,13 +35,13 @@ class RequestController < ApplicationController
 
   def accept
     @request = Request.where(id: params[:request_id]).first
-    @request.update(status: true)
+    @request.update(status: 1)
     redirect_to curr_user_path
   end
 
   def decline
     @request = Request.where(id: params[:request_id]).first
-    @request.update(status: false)
+    @request.update(status: 0)
     redirect_to curr_user_path
   end
 
