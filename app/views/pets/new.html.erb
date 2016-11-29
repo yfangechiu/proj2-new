@@ -3,7 +3,8 @@ Add a Pet for others to Play with!
   <%= f.input :name %>
   <%= f.input :characteristic %>
   <b>Pet type</b> <%= f.select :animal_type, ['Dog', 'Cat', 'Hamster', 'Rabbit', 'Gerbil', 'Raccoon', 'Llamas', 'Other']%>  
-  <%= f.input :start_time %>
+  <%= f.date_field :start_date %>
+  <%= f.time_field :start_time %>
   <%= f.input :duration %>
   <%= f.input :address %>
 <%= hidden_field_tag(:curr_user, @user_id) %>
