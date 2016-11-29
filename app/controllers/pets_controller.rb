@@ -14,9 +14,13 @@ class PetsController < ApplicationController
     else
       @user_id = 0
     end
-    @pet = Pet.first
+    @pet = Pet.new
     @pets = Pet.all
-
+    if params[:pet] != nil && params[:pet][:animal_type]
+      @pets = Pet.where(:animal_type=>params[:pet][:animal_type])
+    else
+      @pets = Pet.all
+    end
   end
 
   def create
@@ -45,13 +49,13 @@ class PetsController < ApplicationController
     redirect_to curr_user_path(curr_user: params[:user_id])
   end
 
-  # def sort
-  #   @pets = Pet.all
-  # end
 
-  # def sortPets
-  #   @pets = Pet.where(:animal_type=> params[:pet][:animal_type], :start_time=> params[:pet][:start_time], :duration => params[:pet][:duration])
-
-  #   redirect_to curr_user_path(curr_user: params[:user_id])
+  # def filter
+  #   #shows all pets in search view that are not owned by this user
+  #   if params[:animal_type]
+  #     @pets = Pet.where(:animal_type=>params[:animal_type])
+  #   else
+  #     @pets = Pet.where(:animal_type=>"Dog")
+  #   end
   # end
 end
