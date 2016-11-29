@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   post '/deletePet', to: 'pets#delete', as: 'delete_pet'
   post '/acceptRequest', to: 'request#accept', as: 'accept_request'
   post '/declineRequest', to: 'request#decline', as: 'decline_request'
+  patch '/searchPets', to: 'pets#show', as: 'patch_search_pets'
+
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

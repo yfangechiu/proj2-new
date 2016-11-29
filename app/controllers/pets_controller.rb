@@ -5,10 +5,6 @@ class PetsController < ApplicationController
 
   end
 
-  def index
-    @pets = Pets.all
-  end
-
   def show
     #shows all pets in search view that are not owned by this user
     
@@ -18,13 +14,15 @@ class PetsController < ApplicationController
     else
       @user_id = 0
     end
-
+    @pet = Pet.first
     @pets = Pet.all
 
   end
 
   def create
-    @pet = Pet.create(:name => params[:pet][:name], :characteristic=>params[:pet][:characteristic], :animal_type=> params[:pet][:animal_type], :address => params[:pet][:address], :start_time=> params[:pet][:start_time], :duration => params[:pet][:duration], :user_id =>params[:curr_user])
+    @pet = Pet.create(:name => params[:pet][:name], :characteristic=>params[:pet][:characteristic], 
+      :animal_type=> params[:pet][:animal_type], 
+      :address => params[:pet][:address], :start_time=> params[:pet][:start_time], :duration => params[:pet][:duration], :user_id =>params[:curr_user])
 
     if @pet.save
 
@@ -38,11 +36,18 @@ class PetsController < ApplicationController
 
   def delete
     #delete pet with the params id
-    p = Pet.where(:id=>params[:pet_id]).first
+    @pets = Pet.where(:id=>params[:pet_id]).first
     p.delete
     redirect_to curr_user_path(curr_user: params[:user_id])
   end
 
+  # def sort
+  #   @pets = Pet.all
+  # end
 
+  # def sortPets
+  #   @pets = Pet.where(:animal_type=> params[:pet][:animal_type], :start_time=> params[:pet][:start_time], :duration => params[:pet][:duration])
 
+  #   redirect_to curr_user_path(curr_user: params[:user_id])
+  # end
 end

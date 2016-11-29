@@ -8,4 +8,6 @@ class Pet < ActiveRecord::Base
 	#NS add back in start_time validation when calendar is set up!
 	validates :duration, presence: true
 	validates :address, presence: true
+
+	default_scope { order('name ASC') }
 end

@@ -4,6 +4,24 @@
   <h1> Pets! </h1>
   <p><%= link_to 'Return to Home Page', root_path %> </p>
 
+
+<%= simple_form_for @pet, url: {action: "show"} do |f| %>
+<%= f.collection_select :animal_type, Pet.order(:animal_type),:name,:animal_type, include_blank: true %>
+
+  <%= f.check_box :animal_type %>
+  <%= f.label :animal_type, "Type of animal" %> 
+  <%= f.check_box :start_time %>
+  <%= f.label :start_time, "Starting time" %> 
+  <%= f.button :submit, "Submit" %>
+<% end %>
+
+<!-- <div>
+<%= select_tag(:sorttype, options_for_select(["animal_type"])) %>
+<%= select_tag(:sortstarttime, options_for_select(["Order By Asc","Order By Desc"])) %>
+<%= submit_tag"Sort Books", class:"btn btn-info"  %>
+</div> -->
+
+
 <style>
 table {
     font-family: arial, sans-serif;
