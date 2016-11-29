@@ -1,150 +1,177 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
 
-<h3>Your Profile</h3>
-<p><%= link_to 'Return to Home Page', root_path %> </p>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<style>
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
+    <title>Heroic Features - Start Bootstrap Template</title>
 
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-</style>
+    <!-- Custom CSS -->
+    <link href="css/heroic-features.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
+
 <body>
-<h3>My Requests:</h3>
-<table>
 
-  <tr>
-  	<th>
-		Pet Name
-	</th>
-	<th>
-		Address
-	</th> 
-	<th>
-		Start Time and Duration
-	</th>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Your Profile</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <%= link_to 'Return to Home Page', root_path %>
+                    </li>
+                    <li>
+                        <a href="#">BLAHBLAH</a>
+                    </li>
+                    <li>
+                        <a href="#">BLAHBLAH</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
-  <th>
-    Status
-  </th>
+    <!-- Page Content -->
+    <div class="container">
 
+        <!-- Jumbotron Header -->
+        <header class="jumbotron hero-spacer">
+            <h1>Welcome Back, <%=@curr_user.email%></h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
+            <p>
+            <%= link_to "Add a pet", new_pet_path(:curr_user=>@user.id), { :class=>"btn btn-primary btn-large" } %>
 
-  </tr>
+            </p>
+        </header>
 
-<%@user.requests.each do |request| %>
-  <tr>
-  	<th>
-		<%=request.pet.name%>
-	</th>
-  	<th>
-		<%=request.pet.address%>
-	</th>  	
-  
-  <th>
-    <%=request.pet.start_time%> available for <%=request.pet.duration%> hours
-  </th>
+        <hr>
 
-  <th>
-    <% if request.status%>
-      approved!
-    <%else%>
-      pending approval
-    <%end%>
-  </th>
+        <!-- Title -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>My Requests</h3>
+            </div>
+        </div>
+        <!-- /.row -->
 
-  </tr>
-<% end %>
+        <!-- Page Features -->
+        <div class="row text-center">
 
-</table>
+          <%@user.requests.each do |request| %>
+              <div class="col-md-3 col-sm-6 hero-feature">
+                  <div class="thumbnail">
+                      <img src="http://placehold.it/800x500" alt="">
+                      <div class="caption">
+                          <h3><%=request.pet.name%></h3>
+                          <p> <b>Location:</b> <%=request.pet.address%></p>
+                          <p> <%=request.pet.start_time%> 
+                              <b>Availability:</b> <%=request.pet.duration%> hours</p>
+                          <p><b>Approval Status:</b>    <% if request.status%>
+                                    Approved!
+                                  <%else%>
+                                    Pending...
+                                  <%end%>
+                          </p>
+                              <a href="#" class="btn btn-primary">Cancel request?</a> <a href="#" class="btn btn-default">More Info</a>
+                          </p>
+                      </div>
+                  </div>
+              </div>
+            <% end %>
 
-<br></br>
-<h3>My Pets:</h3>
-<table>
+        </div>
+        <!-- /.row -->
 
-  <tr>
-  	<th>
-		Pet Name 
-	</th>
-	<th>
-		Type
-	</th> 
-	<th>
-		Address
-	</th>
+        <!-- Title -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>My Pets</h3>
+            </div>
+        </div>
+        <!-- /.row -->
 
-	<th>
-		Start Time/Duration
-	</th>
+        <!-- Page Features -->
+        <div class="row text-center">
 
-  <th>
-    Requests
-  </th>
-	
-	<th>
-		Delete Pet Post
-	</th>
+            <%@user.pets.each do |p| %>
+              <div class="col-md-3 col-sm-6 hero-feature">
+                  <div class="thumbnail">
+                      <img src="http://placehold.it/800x500" alt="">
+                      <div class="caption">
+                          <h3><%=p.name%></h3>
+                          <p> <!-- <%=p.animal_type%><br> --> </p>
+                          <p> <b>Location:</b> <%=p.address%></p>
+                          <p> <b>Start time:</b> <%=p.start_time%> </p>
+                          <p> <b>Availability:</b> <%=p.duration%> hours</p>
+                          <p>
+                          <p>    
+                            <% if p.requests != nil%> 
+                              <%p.requests.each do |request|%>
+                                <b>Request from:</b> <%=request.user.email%>
+                                 
+                                <%= button_to "Accept", accept_request_path(request_id: request.id), :class => "btn btn-primary btn-large", :method => :post %> <%= button_to "Decline", decline_request_path(request_id: request.id), :class => "btn btn-default", :method => :post %> 
+                               <% end %>
+                              <%end%>
+                          </p>
+                          </p>
+                      </div>
+                  </div>
+              </div>
+             <% end %>
 
+        </div>
+        <!-- /.row -->
 
-  </tr>
+        <hr>
 
-<%@user.pets.each do |p| %>
-  <tr>
-  	<th>
-  		<%=p.name%>
-  	</th>
-  	
-  	<th>
-  		<%= p.animal_type%>
-  	</th>
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </footer>
 
-  	<th>
-  		<%=p.address%>
-  	</th>
+    </div>
+    <!-- /.container -->
 
-  	<th>
-  		<%=p.start_time%>, available for <%=p.duration%> hours
-  	</th>
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
 
-    <th>
-      <% if p.requests != nil%> 
-        <%p.requests.each do |request|%>
-              Request from <%=request.user.email%>
-              <%= button_to "Accept", accept_request_path(request_id: request.id), :class => "button medium", :method => :post %> 
-              <%= button_to "Decline", decline_request_path(request_id: request.id), :class => "button medium", :method => :post %> 
-              <br></br>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
 
-        <%end%>
-      
-      <% end %>
-
-
-    </th>
-
-  	<th>
-  		<%= button_to "Delete Post", delete_pet_path(pet_id: p.id, user_id: @user.id), :class => "button medium", :method => :post %> 
-  	</th>
-
-
-  </tr>
-<% end %>
-
-</table>
-
-
-<p><%= link_to 'Add a pet', new_pet_path(:curr_user=>@user.id) %> </p>
 </body>
+
 </html>
+
