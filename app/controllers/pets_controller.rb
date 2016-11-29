@@ -38,6 +38,11 @@ class PetsController < ApplicationController
     #delete pet with the params id
     @pets = Pet.where(:id=>params[:pet_id]).first
     p.delete
+    
+    #delete all requests associated with that pet
+    @pets.requests.each do |request|
+      request.delete
+    end
     redirect_to curr_user_path(curr_user: params[:user_id])
   end
 
