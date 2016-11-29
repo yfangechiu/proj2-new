@@ -45,7 +45,7 @@ class PetsController < ApplicationController
   def delete
     #delete pet with the params id
     @pets = Pet.where(:id=>params[:pet_id]).first
-    p.delete
+    @pets.delete
     redirect_to curr_user_path(curr_user: params[:user_id])
   end
 
