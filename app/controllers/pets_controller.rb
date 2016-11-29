@@ -16,11 +16,19 @@ class PetsController < ApplicationController
     end
     @pet = Pet.new
     @pets = Pet.all
-    if params[:pet] != nil && params[:pet][:animal_type]
+    if params[:pet] != nil && params[:pet][:animal_type] != ""
       @pets = Pet.where(:animal_type=>params[:pet][:animal_type])
-    else
-      @pets = Pet.all
     end
+    if params[:pet] != nil && params[:pet]["start_date(1i)"] != ""
+      start_params = params[:pet][:start_date]
+      start_date = Date.new(params[:pet]["start_date(1i)"].to_i, params[:pet]["start_date(2i)"].to_i, params[:pet]["start_date(3i)"].to_i)
+      @pets = Pet.where(start_date: start_date)
+    end
+    # if params[:pet] != nil && params[:pet]["start_time(4i)"] != nil
+    #   start_time = Time.new(params[:pet]["start_time(1i)"].to_i, params[:pet]["start_time(2i)"].to_i, params[:pet]["start_time(3i)"].to_i, params[:pet]["start_time(4i)"].to_i, params[:pet]["start_time(5i)"].to_i)
+    #   start_time = start_time.strftime("%I:%M%p")
+    #   @pets = @pets.where(start_time: start_time)
+    # end
   end
 
   def create
