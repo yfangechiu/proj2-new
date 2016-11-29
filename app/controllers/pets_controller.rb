@@ -6,9 +6,6 @@ class PetsController < ApplicationController
   end
 
   def show
-    #shows all pets in search view that are not owned by this user
-    
-    #@user_id = params[:curr_user]
     if current_user
       @user_id = current_user.id
     else
@@ -16,10 +13,13 @@ class PetsController < ApplicationController
     end
     @pet = Pet.new
     @pets = Pet.all
-    if params[:pet] != nil && params[:pet][:animal_type]
+    if params[:pet] != nil && params[:pet][:animal_type] != ""
       @pets = Pet.where(:animal_type=>params[:pet][:animal_type])
-    else
-      @pets = Pet.all
+    end
+    if params[:pet] != nil && params[:pet]["start_date(1i)"] != ""
+      start_params = params[:pet][:start_date]
+      start_date = Date.new(params[:pet]["start_date(1i)"].to_i, params[:pet]["start_date(2i)"].to_i, params[:pet]["start_date(3i)"].to_i)
+      @pets = Pet.where(start_date: start_date)
     end
   end
 
@@ -58,14 +58,4 @@ class PetsController < ApplicationController
 
     redirect_to curr_user_path(curr_user: params[:user_id])
   end
-
-
-  # def filter
-  #   #shows all pets in search view that are not owned by this user
-  #   if params[:animal_type]
-  #     @pets = Pet.where(:animal_type=>params[:animal_type])
-  #   else
-  #     @pets = Pet.where(:animal_type=>"Dog")
-  #   end
-  # end
 end
