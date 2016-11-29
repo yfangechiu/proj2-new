@@ -51,7 +51,7 @@
                         <%= link_to 'Search for Pets', search_pets_path() %>
                     </li>
                     <li>
-                        <% if user_signed_in? %>
+            <% if user_signed_in? %>
                 <%= link_to('Logout', destroy_user_session_path, :class => "btn btn-link", :method => :delete) %>        
             <% else %>
                 <%= link_to('Login', new_user_session_path, :class => "btn btn-link")  %>  
@@ -67,13 +67,6 @@
     <!-- Page Content -->
     <div class="container">
 
-<<<<<<< HEAD
-<%= simple_form_for @pet, url: {action: "show"} do |f| %>
-  <%= f.label :animal_type, "Type of Animal" %> 
-  <%= f.select :animal_type, ['Cat', 'Dog', 'Hamster', 'Rabbit', 'Gerbil', 'Raccoon', 'Llamas', 'Other'], :include_blank => true%>   
-  <%= f.label :start_date, "Starting Date" %>
-  <%= f.date_select :start_date, {:include_blank => true, :default => nil}%> 
-=======
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
             <h1>Find a hug!</h1>
@@ -87,15 +80,15 @@
             <div class="col-lg-12">
                     <h4>
           <%= simple_form_for @pet, url: {action: "show"} do |f| %>
-  <%= f.label :animal_type, "Type of animal" %> 
-  <%= f.select :animal_type, ['Dog', 'Cat', 'Hamster', 'Rabbit', 'Gerbil', 'Raccoon', 'Llamas', 'Other']%>   
-  <%= f.label :start_date, "Starting date" %> 
-  <%= f.select :start_time, ['11/26', '11/27', '11/28', '11/29', '11/30', '12/01', '12/02', '12/03']%>  
-  <%= f.label :start_time, "Starting time" %> 
-  <%= f.select :start_time, ['1:00PM', '2:00PM', '3:00PM', '4:00PM', '5:00PM', '6:00PM', '7:00PM', '8:00PM']%>     
->>>>>>> 485e92c94636a62881612f9ebd274717325b2dd5
-  <%= f.button :submit, "Filter" %>
-<% end %>
+            <%= f.label :animal_type, "Type of animal" %> 
+            <%= f.select :animal_type, ['Dog', 'Cat', 'Hamster', 'Rabbit', 'Gerbil', 'Raccoon', 'Llamas', 'Other']%>   
+            <%= f.label :start_date, "Starting date" %> 
+            <%= f.select :start_time, ['11/26', '11/27', '11/28', '11/29', '11/30', '12/01', '12/02', '12/03']%>  
+            <%= f.label :start_time, "Starting time" %> 
+            <%= f.select :start_time, ['1:00PM', '2:00PM', '3:00PM', '4:00PM', '5:00PM', '6:00PM', '7:00PM', '8:00PM']%>     
+
+            <%= f.button :submit, "Filter" %>
+          <% end %>
 
             </h4>
             <br>
@@ -124,42 +117,12 @@
                   </div>
               </div>
             <% end %>
-            <% end %>
+          <% end %>
 
         </div>
         <!-- /.row -->
 
-
-<<<<<<< HEAD
-<table>
-
-  <tr>
-    <th>
-    Pet Name 
-  </th>
-  <th>
-    Type
-  </th> 
-  <th>
-    Description
-  </th>
-  
-  <th>
-    Request a Pet
-  </th>
-
-
-  </tr>
-<% if @pets != nil %> 
-  <%@pets.each do |pet| %>
-    <tr>
-      <%= render pet %>
-    </tr>
-  <% end %>
-<% end %>
-=======
         <hr>
->>>>>>> 485e92c94636a62881612f9ebd274717325b2dd5
 
         <!-- Footer -->
         <footer>
@@ -182,4 +145,3 @@
 </body>
 
 </html>
-
