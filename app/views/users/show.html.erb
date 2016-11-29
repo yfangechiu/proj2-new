@@ -69,13 +69,8 @@
 
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
-<<<<<<< HEAD
             <h1>Welcome back, <%=@curr_user.email%></h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
-=======
-            <h1>Welcome Back, <%=@curr_user.email%></h1>
-            <p>Check below for the status on requests you've made, and check if anyone has requested to play with your pets.</p>
->>>>>>> 6ad643b8d050d6a77a53ba2018df9d0ea8518ecb
             <p>
             <%= link_to "Add a pet", new_pet_path(:curr_user=>@user.id), { :class=>"btn btn-primary btn-large" } %>
 
@@ -104,16 +99,13 @@
                           <p> <b>Location:</b> <%=request.pet.address%></p>
                           <p> <%=request.pet.start_time%> 
                               <b>Availability:</b> <%=request.pet.duration%> hours</p>
-                          <p><b>Approval Status:</b>    <% if request.status == 1%>
+                          <p><b>Approval Status:</b>    <% if request.status%>
                                     Approved!
-                                  <%elsif request.status == -1%>
+                                  <%else%>
                                     Pending...
-                                  <%else %>
-                                    Declined
                                   <%end%>
                           </p>
-                              <%= link_to "Cancel Request?", delete_request_path(pet_id: request.pet.id, user_id: current_user.id), :method => :post, :class=>"btn btn-primary btn-large" %>
-                              <a href="#" class="btn btn-default">More Info</a>
+                              <a href="#" class="btn btn-primary">Cancel request?</a> <a href="#" class="btn btn-default">More Info</a>
                           </p>
                       </div>
                   </div>
@@ -147,19 +139,17 @@
                           <p> <b>Availability:</b> <%=p.duration%> hours</p>
                           <p> <%= button_to "Delete Pet", delete_pet_path(pet_id: p.id, user_id: @user.id), :class => "btn btn-danger", :method => :post %> </p>
                           <p>    
-                            <% if p.requests == -1%> 
+                            <% if p.requests != nil%> 
                               <%p.requests.each do |request|%>
                                 <b>Request from:</b> <%=request.user.email%>
                                  
                                 <%= button_to "Accept", accept_request_path(request_id: request.id), :class => "btn btn-primary btn-large", :method => :post %> <%= button_to "Decline", decline_request_path(request_id: request.id), :class => "btn btn-default", :method => :post %> 
-                              <% end %>
-                            <%end%>
-
+                               <% end %>
+                              <%end%>
                           </p>
                           </p>
                       </div>
                   </div>
-                          <%= link_to "Add a pet", new_pet_path(:curr_user=>@user.id), { :class=>"btn btn-primary btn-large" } %>
               </div>
              <% end %>
 
