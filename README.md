@@ -9,6 +9,12 @@ Demo Link:​ railsdecal.com
 
 Idea: ​An application where users can post when and where they will be with their pets and allow other users to request spend time with the pets.
 
+Gems:
+
+For compatibility with bootstrap template:
+	gem 'bootstrap-sass', '~> 3.2.0' 
+	gem 'autoprefixer-rails'
+
 Models and Description:
 
 User
