@@ -26,9 +26,9 @@ Request
 
 Pet
 
-● has animal_type (e.g. dog, cat, etc.), image_url for owners to upload images of their pets, name, characteristic (e.g. Golden Retrievers, likes peanut butter, etc.), start_time indicating when the pet is available to play with, end_time indicating when the pet is no longer free, overall rating that is an average of ratings by users that have spent time with the pet, user_id for its owner. 
+● has animal_type (e.g. dog, cat, etc.), image_url for owners to upload images of their pets, name, characteristic (e.g. Golden Retrievers, likes peanut butter, etc.), start_time indicating when the pet is available to play with, end_time indicating when the pet is no longer free, user_id for its owner. 
 
-● belongs to a user and has many requests and has one overall review
+● belongs to a user and has many requests
 
 Features:
 
@@ -38,11 +38,9 @@ Features:
 
 ● Users can post about their pet's availability
 
-● Users can review a pet, giving it a numerical rating and a text review
-
 ● Users can accept or deny requests
 
-● Users can sort by rating, animal type, starting time, and ending time
+● Users can sort by rating, animal type, starting time, and starting date
 
 Division of Labor:
 
