@@ -1,4 +1,4 @@
-# proj2-new
+# Pethugs Website- Rails Decal Final Project
 PetHugs
 
 Title:​ Rails Decal Final Project -- PetHugs
