@@ -17,8 +17,7 @@ class PetsController < ApplicationController
       @pets = Pet.where(:animal_type=>params[:pet][:animal_type])
     end
     if params[:pet] != nil && params[:pet]["start_date(1i)"] != ""
-      start_params = params[:pet][:start_date]
-      start_date = Date.new(params[:pet]["start_date(1i)"].to_i, params[:pet]["start_date(2i)"].to_i, params[:pet]["start_date(3i)"].to_i)
+      start_date = params[:pet][:start_date]
       @pets = Pet.where(start_date: start_date)
     end
   end
