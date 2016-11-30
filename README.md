@@ -18,12 +18,6 @@ User
 ● users have many pets and have many requests
 
 
-Review
-
-● has rating (on a scale between 1 - 5, 5 being the best), comment, and pet_id (which pet does this review belong to)
-
-● belongs to a pet
-
 Request
 
 ● has user_id, request_message, status (e.g. approved, pending, denied), and pet_id
