@@ -2,11 +2,12 @@ Add a Pet for others to Play with!
 <%= simple_form_for @pet, url: {action: "create"} do |f| %>
   <%= f.input :name %>
   <%= f.input :characteristic %>
-  <h>* Pet type</h> <%= f.select :animal_type, ['Dog', 'Cat', 'Hamster', 'Rabbit', 'Gerbil', 'Raccoon', 'Llamas', 'Other']%>
+  <b>* Pet type</b> <%= f.select :animal_type, ['Dog', 'Cat', 'Hamster', 'Rabbit', 'Gerbil', 'Raccoon', 'Llamas', 'Other']%>
   <%= f.input :image_url %>
-  <div>* Date <%= f.date_field :start_date %></div>
-  <div>* Time <%= f.time_field :start_time %></div>
-  <%= f.input :duration %>
+  <div><b>* Date</b> <%= f.date_field :start_date %></div>
+  <div><b>* Time</b> <%= f.time_field :start_time %></div>
+  <%= f.label :duration, "* Duration(hrs)" %>
+  <%= f.select :duration, [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5], :include_blank => true%>
   <%= f.input :address %>
 <%= hidden_field_tag(:curr_user, @user_id) %>
   <%= f.button :submit %>

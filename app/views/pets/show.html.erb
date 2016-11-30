@@ -87,6 +87,8 @@
   <%= f.select :animal_type, ['Cat', 'Dog', 'Hamster', 'Rabbit', 'Gerbil', 'Raccoon', 'Llamas', 'Other'], :include_blank => true%>   
   <%= f.label :start_date, "Starting Date" %>
   <%= f.date_field :start_date %> 
+  <%= f.label :duration, "Duration" %> 
+  <%= f.select :duration, [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5], :include_blank => true%>   
    <%= f.button :submit, "Filter" %>
  <% end %>
 

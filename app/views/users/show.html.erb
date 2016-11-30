@@ -97,15 +97,19 @@
                       <div class="caption">
                           <h3><%=request.pet.name%></h3>
                           <p> <b>Location:</b> <%=request.pet.address%></p>
-                          <p> <%=request.pet.start_time%> 
-                              <b>Availability:</b> <%=request.pet.duration%> hours</p>
-                          <p><b>Approval Status:</b>    <% if request.status%>
+                          <p> <b>Start Date: </b> <%=request.pet.start_date%></p>
+                          <p> <b>Start Time: </b><%=request.pet.start_time.strftime("%H:%M")%> </p>
+                          <p>    <b>Availability:</b> <%=request.pet.duration%> hours</p>
+                          <p><b>Approval Status:</b>    <% if request.status==1%>
                                     Approved!
-                                  <%else%>
+                                  <%elsif request.status == -1%>
                                     Pending...
+                                  <%else%>
+                                    Declined
                                   <%end%>
                           </p>
-                              <a href="#" class="btn btn-primary">Cancel request?</a> <a href="#" class="btn btn-default">More Info</a>
+
+                              <%= button_to('Cancel Request?', delete_request_path(pet_id: request.pet.id, user_id: current_user.id), :class=>"btn btn-primary btn-large", :method => :post) %>
                           </p>
                       </div>
                   </div>
@@ -142,6 +146,7 @@
                             <% if p.requests != nil%> 
                               <%p.requests.each do |request|%>
                                 <b>Request from:</b> <%=request.user.email%>
+                                <b>Request Message: </b> <%=request.request_message%>
                                  
                                 <%= button_to "Accept", accept_request_path(request_id: request.id), :class => "btn btn-primary btn-large", :method => :post %> <%= button_to "Decline", decline_request_path(request_id: request.id), :class => "btn btn-default", :method => :post %> 
                                <% end %>

@@ -14,11 +14,14 @@ class PetsController < ApplicationController
     @pet = Pet.new
     @pets = Pet.all
     if params[:pet] != nil && params[:pet][:animal_type] != ""
-      @pets = Pet.where(:animal_type=>params[:pet][:animal_type])
+      @pets = @pets.where(:animal_type=>params[:pet][:animal_type])
     end
-    if params[:pet] != nil && params[:pet]["start_date(1i)"] != ""
+    if params[:pet] != nil && params[:pet]["start_date(1i)"] != nil
       start_date = params[:pet][:start_date]
-      @pets = Pet.where(start_date: start_date)
+      @pets = @pets.where(start_date: start_date)
+    end
+    if params[:pet] != nil && params[:pet][:duration] != ""
+      @pets = @pets.where(:duration=>params[:pet][:duration])
     end
   end
 
